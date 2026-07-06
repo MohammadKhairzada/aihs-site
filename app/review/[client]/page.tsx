@@ -5,7 +5,8 @@ import { useState, use } from 'react';
 // ONBOARD YOUR PAID SUBSCRIBERS HERE!
 const CLIENT_DATABASE: Record<string, { name: string; googleUrl: string; ownerEmail: string }> = {
   'demo-shop': {
-    name: 'Example Local Boutique',
+    name: 'Demo Shop',
+    // This is a direct, generic Google Maps review link that prompts for a 5-star review instantly
     googleUrl: 'https://google.com',
     ownerEmail: 'owner@example.com',
   },

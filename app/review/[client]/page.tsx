@@ -2,7 +2,7 @@
 
 import { useState, use } from 'react';
 
-// ONBOARD YOUR PAID SUBSCRIBERS HERE!
+// ONBOARD YOUR PAID SUBSCRIBERS HERE
 const CLIENT_DATABASE: Record<string, { name: string; googleUrl: string; ownerEmail: string }> = {
   'demo-shop': {
     name: 'Example Local Boutique',

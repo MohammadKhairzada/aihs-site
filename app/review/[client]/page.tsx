@@ -16,7 +16,11 @@ const CLIENT_DATABASE: Record<string, { name: string; googleUrl: string; ownerEm
   },
 };
 
-export default function NFCReviewGate({ params }: { params: Promise<{ client: string }> }) {
+interface PageProps {
+  params: Promise<{ client: string }>;
+}
+
+export default function NFCReviewGate({ params }: PageProps) {
   const resolvedParams = use(params);
   const clientSlug = resolvedParams.client;
   const store = CLIENT_DATABASE[clientSlug];

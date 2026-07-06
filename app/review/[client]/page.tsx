@@ -1,15 +1,22 @@
 'use client';
 
-import { useState, use, useEffect } from 'react';
+import { useState, use } from 'react';
 
-// Hardcoded static starter database (Always available)
-const STATIC_DATABASE: Record<string, { name: string; googleUrl: string; ownerEmail: string }> = {
+// ONBOARD REAL PAID CLIENTS HERE ON YOUR PHONE OR LAPTOP!
+// Copy and paste a row to add infinite shops. Works globally on ALL customer phones.
+const CLIENT_DATABASE: Record<string, { name: string; googleUrl: string; ownerEmail: string }> = {
   'demo-shop': {
     name: 'Demo Shop',
-    // FIXED: Real global Google Review entry link that immediately triggers a 5-star layout review box
+    // Global generic 5-star Google review prompt link
     googleUrl: 'https://google.com',
     ownerEmail: 'owner@example.com',
-  }
+  },
+  /* ADD YOUR FIRST PAID CLIENT DIRECTLY BELOW THIS LINE */
+  'tonys-pizza': {
+    name: "Tony's Pizza Place",
+    googleUrl: 'https://google.com',
+    ownerEmail: 'tony@pizzaplace.com',
+  },
 };
 
 interface PageProps {
@@ -19,39 +26,17 @@ interface PageProps {
 export default function NFCReviewGate({ params }: PageProps) {
   const resolvedParams = use(params);
   const clientSlug = resolvedParams.client;
-  
-  const [store, setStore] = useState<{ name: string; googleUrl: string; ownerEmail: string } | null>(null);
+  const store = CLIENT_DATABASE[clientSlug];
+
   const [hoveredStar, setHoveredStar] = useState<number | null>(null);
   const [lowRating, setLowRating] = useState(false);
   const [feedback, setFeedback] = useState('');
   const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Check if the shop exists in phone local memory storage first
-    const localData = localStorage.getItem('aihs_client_db');
-    let customDatabase = {};
-    if (localData) {
-      try { customDatabase = JSON.parse(localData); } catch (e) { console.error(e); }
-    }
-
-    // Merge static baseline data with your phone-created custom clients
-    const combinedDatabase = { ...STATIC_DATABASE, ...customDatabase } as Record<string, { name: string; googleUrl: string; ownerEmail: string }>;
-    
-    if (combinedDatabase[clientSlug]) {
-      setStore(combinedDatabase[clientSlug]);
-    }
-    setLoading(false);
-  }, [clientSlug]);
-
-  if (loading) {
-    return <div className="flex h-screen items-center justify-center bg-gray-50 text-gray-400 font-sans text-sm">Loading store layout...</div>;
-  }
 
   if (!store) {
     return (
       <div className="flex h-screen items-center justify-center bg-gray-50 text-gray-400 font-sans text-sm tracking-wide p-4 text-center">
-        Store configuration missing. Open /onboard on your phone to add this client slug.
+        Store configuration missing. Open GitHub to add this client slug to the master database.
       </div>
     );
   }
@@ -75,6 +60,7 @@ export default function NFCReviewGate({ params }: PageProps) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 px-4 font-sans antialiased">
       <div className="w-full max-w-md rounded-3xl bg-white border border-gray-100 p-10 text-center shadow-lg transition-all duration-300">
+        
         <div className="mb-8">
           <div className="mx-auto mb-4 h-1 w-12 rounded-full bg-gray-200" />
           <h2 className="text-2xl font-semibold tracking-tight text-gray-900 mb-1.5">How was your experience?</h2>

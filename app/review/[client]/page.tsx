@@ -8,8 +8,8 @@ const CLIENT_DATABASE: Record<string, { name: string; googleUrl: string; ownerEm
   'demo-shop': {
     name: 'Demo Shop',
     // Global generic 5-star Google review prompt link
-    googleUrl: 'https://google.com',
-    ownerEmail: 'owner@example.com',
+    googleUrl: 'https://search.google.com/local/writereview?placeid=ChIJ81QWXL9ZwokRXT045fycD8g',
+    ownerEmail: 'm.i.khairzada@gmail.com',
   },
   /* ADD YOUR FIRST PAID CLIENT DIRECTLY BELOW THIS LINE */
   'tonys-pizza': {
